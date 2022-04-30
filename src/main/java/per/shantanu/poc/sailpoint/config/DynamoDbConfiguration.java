@@ -15,7 +15,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnProperty(prefix = ApplicationProperties.PREFIX, name = "db", havingValue = "DYNAMODB")
 @EnableConfigurationProperties(DynamodbProperties.class)
-public class DynamodbConfiguration {
+public class DynamoDbConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
@@ -26,9 +26,21 @@ public class DynamodbConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = DynamodbProperties.PREFIX, name = "endpoint")
     public DynamoDbAsyncClient dynamoDbAsyncClient(@NonNull DynamodbProperties properties,
                                                    AwsCredentialsProvider credentialsProvider) {
+        return DynamoDbAsyncClient.builder()
+                .region(properties.region())
+                .credentialsProvider(credentialsProvider)
+                .httpClientBuilder(NettyNioAsyncHttpClient.builder())
+                .endpointOverride(properties.endpoint())
+                .build();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DynamoDbAsyncClient defaultDynamoDbAsyncClient(@NonNull DynamodbProperties properties,
+                                                          AwsCredentialsProvider credentialsProvider) {
         return DynamoDbAsyncClient.builder()
                 .region(properties.region())
                 .credentialsProvider(credentialsProvider)
