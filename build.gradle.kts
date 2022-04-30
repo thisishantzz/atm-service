@@ -8,6 +8,7 @@ plugins {
     java
     id("io.freefair.lombok") version "6.4.3"
     id("org.springframework.boot") version "2.6.7"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
 group = "per.shantanu.poc.sailpoint"
@@ -15,7 +16,21 @@ version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://plugins.gradle.org/m2")
+}
+
+val awsSDKVersion = "2.17.130"
+
+dependencyManagement {
+    imports {
+        mavenBom("software.amazon.awssdk:bom:$awsSDKVersion")
     }
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("software.amazon.awssdk:dynamodb")
+    implementation("software.amazon.awssdk:netty-nio-client")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.projectreactor:reactor-test")
 }
