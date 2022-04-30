@@ -10,6 +10,9 @@ plugins {
     id("org.springframework.boot") version "2.6.7"
 }
 
+group = "per.shantanu.poc.sailpoint"
+version = "1.0.0-SNAPSHOT"
+
 repositories {
     mavenCentral()
     maven {
