@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import software.amazon.awssdk.regions.Region;
 
+import java.net.URI;
+
 @Getter
 @Slf4j
 @ConfigurationProperties(prefix = DynamodbProperties.PREFIX)
@@ -15,7 +17,7 @@ public class DynamodbProperties {
     /**
      * <p>The DynamoDB endpoint to connect to</p>
      */
-    private String endpoint;
+    private URI endpoint;
 
     /**
      * <p>The region where the table should exist. Default is <code>us-west-2</code>.</p>
@@ -32,7 +34,7 @@ public class DynamodbProperties {
      */
     private String secretKey;
 
-    public void setEndpoint(String endpoint) {
+    public void setEndpoint(URI endpoint) {
         this.endpoint = endpoint;
     }
 
