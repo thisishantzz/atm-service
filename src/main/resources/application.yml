@@ -3,3 +3,5 @@ app:
 db:
   dynamodb:
     endpoint: http://localhost:8000
+    access-key: mockKey
+    secret-key: mockSecret
