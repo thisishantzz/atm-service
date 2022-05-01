@@ -10,7 +10,7 @@ services:
     volumes:
       - ./infra/init-db:/home/dynamodblocal/db
   app:
-    image: sailpoint-assignment:1.0.0-SNAPSHOT
+    image: atm-service:1.0.0-SNAPSHOT
     container_name: application
     ports:
       - "8080:8080"
