@@ -28,12 +28,17 @@ public class DynamoDBCredentialsRepository extends CredentialsRepository {
                   b.key(Map.of(TABLE_KEY, AttributeValue.builder().s(customerID).build()));
                 }))
         .flatMap(
-            t ->
-                Mono.fromCallable(
-                    () -> {
-                      final Map<String, AttributeValue> item = t.item();
-                      return Credentials.create(item.get(TABLE_KEY).s(), item.get(FIELD_PIN).s());
-                    }));
+            t -> {
+              if (t.item().size() <= 0) {
+                return Mono.empty();
+              }
+
+              return Mono.fromCallable(
+                  () -> {
+                    final Map<String, AttributeValue> item = t.item();
+                    return Credentials.create(item.get(TABLE_KEY).s(), item.get(FIELD_PIN).s());
+                  });
+            });
   }
 
   @Override

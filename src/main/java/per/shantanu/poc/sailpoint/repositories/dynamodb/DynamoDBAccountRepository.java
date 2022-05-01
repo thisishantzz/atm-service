@@ -30,17 +30,22 @@ public class DynamoDBAccountRepository extends AccountRepository {
                   b.key(Map.of(TABLE_KEY, AttributeValue.builder().s(accountNumber).build()));
                 }))
         .flatMap(
-            t ->
-                Mono.fromCallable(
-                    () -> {
-                      final Map<String, AttributeValue> item = t.item();
-                      return Account.create(
-                          b -> {
-                            b.accountNumber(accountNumber);
-                            b.customerID(item.get(FIELD_CUSTOMER_ID).s());
-                            b.balance(Double.parseDouble(item.get(FIELD_BALANCE).n()));
-                          });
-                    }));
+            t -> {
+              if (t.item().size() <= 0) {
+                return Mono.empty();
+              }
+
+              return Mono.fromCallable(
+                  () -> {
+                    final Map<String, AttributeValue> item = t.item();
+                    return Account.create(
+                        b -> {
+                          b.accountNumber(accountNumber);
+                          b.customerID(item.get(FIELD_CUSTOMER_ID).s());
+                          b.balance(Double.parseDouble(item.get(FIELD_BALANCE).n()));
+                        });
+                  });
+            });
   }
 
   @Override
