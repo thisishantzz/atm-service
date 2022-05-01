@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  dynamodb:
+    build:
+      context: ./infra
+      dockerfile: Dockerfile
+    container_name: dynamodb_local
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./infra/init-db:/home/dynamodblocal/db
+volumes:
+  init-db:
+    driver: local
