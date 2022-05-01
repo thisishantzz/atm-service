@@ -13,4 +13,4 @@ build
 
 # Ignore json files for infra
 infra/*.json
-infra/**/*.db
+infra/init-db/**
