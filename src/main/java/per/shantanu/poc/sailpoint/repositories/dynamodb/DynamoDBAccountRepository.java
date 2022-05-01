@@ -12,11 +12,11 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 @Builder(builderMethodName = "create")
 public class DynamoDBAccountRepository extends AccountRepository {
 
-  private static final String TABLE_NAME = "Account";
-  private static final String TABLE_KEY = "accountNumber";
+  public static final String TABLE_NAME = "Account";
+  public static final String TABLE_KEY = "accountNumber";
 
-  private static final String FIELD_CUSTOMER_ID = "customerID";
-  private static final String FIELD_BALANCE = "balance";
+  public static final String FIELD_CUSTOMER_ID = "customerID";
+  public static final String FIELD_BALANCE = "balance";
 
   private final DynamoDbAsyncClient dynamodb;
 

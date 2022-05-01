@@ -11,10 +11,10 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 @Builder(builderMethodName = "create")
 public class DynamoDBCredentialsRepository extends CredentialsRepository {
 
-  private static final String TABLE_NAME = "Credentials";
-  private static final String TABLE_KEY = "customerID";
+  public static final String TABLE_NAME = "Credentials";
+  public static final String TABLE_KEY = "customerID";
 
-  private static final String FIELD_PIN = "pin";
+  public static final String FIELD_PIN = "pin";
 
   private final DynamoDbAsyncClient dynamodb;
 
