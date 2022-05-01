@@ -60,3 +60,10 @@ tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
     imageName = "${project.name}:${project.version}"
     builder = "paketobuildpacks/builder:tiny"
 }
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Implementation-Version"] = project.version
+        attributes["Implementation-Title"] = project.name
+    }
+}
