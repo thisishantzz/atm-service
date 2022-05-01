@@ -9,10 +9,20 @@ plugins {
     id("io.freefair.lombok") version "6.4.3"
     id("org.springframework.boot") version "2.6.7"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("com.diffplug.spotless") version "6.5.1"
 }
 
 group = "per.shantanu.poc.sailpoint"
 version = "1.0.0-SNAPSHOT"
+
+spotless {
+    java {
+        googleJavaFormat("1.8")
+        removeUnusedImports()
+        endWithNewline()
+        trimTrailingWhitespace()
+    }
+}
 
 repositories {
     mavenCentral()
