@@ -77,7 +77,7 @@ You can run the following `curl` command to call this api
 curl -i -X POST http://localhost:8080/login -H "Content-Type: application/json" -d '{"customerID": "john_123", "pin": "1234"}'
 ```
 
-Using anything other than the data provided will lead to a `Http 4xx` error being returned. 
+If you provide a pin that is not 4 digits long, then a `Http 400` will be returned. If an invalid combination of `customerID` and `pin` is provided, then a `Http 401` will be returned and nothing will be printed in the logs. 
 
 #### Get Account Details api
 
