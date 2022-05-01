@@ -159,4 +159,20 @@ public class ATMServiceController {
 
     private final Double value;
   }
+
+  @ControllerAdvice
+  public static final class ExceptionHandler {
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(IllegalArgumentException.class)
+    public <T> Mono<ResponseEntity<T>> illegalArgument(IllegalArgumentException ex) {
+      log.error(ex.getMessage(), ex);
+      return Mono.fromCallable(() -> ResponseEntity.status(400).build());
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ResourceNotFoundError.class)
+    public <T> Mono<ResponseEntity<T>> resourceNotFound(ResourceNotFoundError ex) {
+      log.error(ex.getMessage(), ex);
+      return Mono.fromCallable(() -> ResponseEntity.status(404).build());
+    }
+  }
 }
