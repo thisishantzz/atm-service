@@ -59,6 +59,7 @@ public class ATMServiceController {
   public Mono<ResponseEntity<Account>> depositAmount(
       @PathVariable("number") String accountNumber, @RequestBody Amount amount) {
     if (amount.value <= 0) {
+      log.error("Amount to deposit cannot be negative");
       return Mono.just(ResponseEntity.status(400).build());
     }
 
@@ -107,7 +108,7 @@ public class ATMServiceController {
   public Mono<ResponseEntity<Account>> withdrawAmount(
       @PathVariable("number") String accountNumber, @RequestBody Amount amount) {
     if (amount.value <= 0) {
-      log.error("Amount to withdraw is less than the balance");
+      log.error("Amount to withdraw cannot be negative");
       return Mono.fromCallable(() -> ResponseEntity.status(400).build());
     }
 
@@ -117,7 +118,7 @@ public class ATMServiceController {
         .switchIfEmpty(
             Mono.error(
                 new IllegalArgumentException(
-                    "Amount to withdraw is greater than available " + "balance")))
+                    "Amount to withdraw is greater than available balance")))
         .flatMap(
             t ->
                 Mono.fromCallable(
