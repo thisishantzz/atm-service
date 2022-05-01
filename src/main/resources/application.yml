@@ -1,0 +1,5 @@
+app:
+  db: DYNAMODB
+db:
+  dynamodb:
+    endpoint: http://localhost:8000
