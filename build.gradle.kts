@@ -15,6 +15,13 @@ plugins {
 group = "per.shantanu.poc.sailpoint"
 version = "1.0.0-SNAPSHOT"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+        vendor.set(JvmVendorSpec.ADOPTOPENJDK)
+    }
+}
+
 spotless {
     java {
         googleJavaFormat("1.8")
@@ -40,6 +47,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("software.amazon.awssdk:dynamodb")
     implementation("software.amazon.awssdk:netty-nio-client")
+    implementation("com.google.code.findbugs:annotations:3.0.1")
+    implementation("com.google.code.findbugs:jsr305:3.0.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
