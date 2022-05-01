@@ -20,7 +20,7 @@ This `README` assumes the working directory to be the `PROJECT_ROOT`. If you are
 cd ${PROJECT_ROOT}
 ```
 
-#### Prepare initialization data
+### Prepare initialization data
 
 * Create a folder named `init-db` in the `${PROJECT_ROOT}/infra` directory.
 ```shell
@@ -31,13 +31,13 @@ mkdir -p infra/init-db
 cp infra/shared-local-instance.db infra/init-db
 ```
 
-#### Prepare the application's docker image
+### Prepare the application's docker image
 * You can use gradle to do this
 ```shell
 ./gradlew bootBuildImage
 ```
 
-#### Start the application
+### Start the application
 
 We will use `docker-compose` to do this. Run the following command and the application will start up
 
@@ -64,7 +64,7 @@ To run the application, you need to switch to a new terminal window (or open a n
 
 All endpoints return `Http 2xx` status codes if the request was processed successfully. Unfortunately, at the moment, I am not returning meaningful error messages back. So if there is an error, the curl command gets a `Http 4xx` or `Http 5xx` status code. To see why this status was returned, you can check the application logs in the other terminal window. 
 
-#### Login api
+### Login api
 This api listens on the endpoint `/login`. The following data is already available to test this endpoint. 
 ```json
 [
@@ -79,7 +79,7 @@ curl -i -X POST http://localhost:8080/login -H "Content-Type: application/json" 
 
 If you provide a pin that is not 4 digits long, then a `Http 400` will be returned. If an invalid combination of `customerID` and `pin` is provided, then a `Http 401` will be returned and nothing will be printed in the logs. 
 
-#### Get Account Details api
+### Get Account Details api
 
 This is a `GET` api and listens to the endpoint `/account/{account_number}`. The following account numbers can be used to test this endpoint. 
 ```text
@@ -98,7 +98,7 @@ curl -i http://localhost/account/3BA63DF4-E534-4410-9008-3B27003240F7
 
 If an account number other than the ones provided is used, you will get a `Http 404` indicating that Account with the number provided was not found in the system. 
 
-#### Deposit Money api
+### Deposit Money api
 
 This is a `PATCH` type API and listens to the endpoint `/account/{account_number}/deposit`. The same initialization provided for the `Get Account Details` api can be used here as well. 
 
@@ -110,7 +110,7 @@ curl -i -X PATCH http://localhost:8080/account/C25D1498-9531-4D18-B10C-75E462E05
 
 If an account number that is not already available is used, a `Http 404` is returned. If the amount to deposit is less than 0, then a `Http 400` is returned. 
 
-#### Withdraw Money api 
+### Withdraw Money api 
 
 This is a `PATCH` type API and listens to the endpoint `/account/{account_number}/withdraw`. The same initialization data provided for the `Get Account Details` api can be used here as well. 
 
