@@ -44,6 +44,8 @@ dependencyManagement {
 }
 
 dependencies {
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("software.amazon.awssdk:dynamodb")
     implementation("software.amazon.awssdk:netty-nio-client")
