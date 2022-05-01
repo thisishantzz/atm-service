@@ -10,3 +10,6 @@
 
 # Ignore Gradle build output directory
 build
+
+# Ignore json files for infra
+infra/*.json
