@@ -3,7 +3,6 @@ package per.shantanu.poc.sailpoint;
 import java.time.ZoneId;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +11,7 @@ import per.shantanu.poc.sailpoint.init.Initializer;
 
 @SpringBootApplication(scanBasePackages = "per.shantanu")
 @RequiredArgsConstructor
-public class Application implements CommandLineRunner {
+public class Application {
 
   private final Initializer initializer;
 
@@ -23,10 +22,5 @@ public class Application implements CommandLineRunner {
   @Bean
   public ZoneId timezone(@NonNull ApplicationProperties properties) {
     return properties.timezone();
-  }
-
-  @Override
-  public void run(String... args) {
-    initializer.initialize().subscribe();
   }
 }
