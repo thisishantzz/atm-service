@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import per.shantanu.poc.sailpoint.init.Initializer;
+import per.shantanu.poc.sailpoint.init.dynamodb.DynamoDBBackendInitializer;
 import per.shantanu.poc.sailpoint.repositories.AccountRepository;
 import per.shantanu.poc.sailpoint.repositories.CredentialsRepository;
 import per.shantanu.poc.sailpoint.repositories.dynamodb.DynamoDBAccountRepository;
@@ -59,5 +61,10 @@ public class DynamoDbConfiguration {
   @Bean
   public AccountRepository accountRepository(DynamoDbAsyncClient client) {
     return DynamoDBAccountRepository.create().dynamodb(client).build();
+  }
+
+  @Bean
+  public Initializer initializer(DynamoDbAsyncClient client) {
+    return DynamoDBBackendInitializer.create().dynamodb(client).build();
   }
 }
