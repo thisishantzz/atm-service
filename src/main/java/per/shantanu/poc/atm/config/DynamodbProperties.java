@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.config;
+package per.shantanu.poc.atm.config;
 
 import java.net.URI;
 import lombok.Getter;

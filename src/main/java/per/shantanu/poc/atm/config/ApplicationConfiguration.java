@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.config;
+package per.shantanu.poc.atm.config;
 
 import java.time.ZoneId;
 import lombok.NonNull;
@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-import per.shantanu.poc.sailpoint.entities.Account;
-import per.shantanu.poc.sailpoint.entities.Credentials;
-import per.shantanu.poc.sailpoint.handlers.ATMServiceController;
-import per.shantanu.poc.sailpoint.internal.jackson.AccountSerializer;
-import per.shantanu.poc.sailpoint.internal.jackson.AmountDeserializer;
-import per.shantanu.poc.sailpoint.internal.jackson.CredentialDeserializer;
+import per.shantanu.poc.atm.entities.Account;
+import per.shantanu.poc.atm.entities.Credentials;
+import per.shantanu.poc.atm.handlers.ATMServiceController;
+import per.shantanu.poc.atm.internal.jackson.AccountSerializer;
+import per.shantanu.poc.atm.internal.jackson.AmountDeserializer;
+import per.shantanu.poc.atm.internal.jackson.CredentialDeserializer;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(ApplicationProperties.class)

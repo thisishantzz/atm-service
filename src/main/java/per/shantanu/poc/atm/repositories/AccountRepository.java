@@ -1,8 +1,8 @@
-package per.shantanu.poc.sailpoint.repositories;
+package per.shantanu.poc.atm.repositories;
 
 import org.springframework.util.StringUtils;
-import per.shantanu.poc.sailpoint.entities.Account;
-import per.shantanu.poc.sailpoint.errors.ResourceNotFoundError;
+import per.shantanu.poc.atm.entities.Account;
+import per.shantanu.poc.atm.errors.ResourceNotFoundError;
 import reactor.core.publisher.Mono;
 
 public abstract class AccountRepository {

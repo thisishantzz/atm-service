@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.handlers;
+package per.shantanu.poc.atm.handlers;
 
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import per.shantanu.poc.sailpoint.entities.Account;
-import per.shantanu.poc.sailpoint.entities.Credentials;
-import per.shantanu.poc.sailpoint.errors.ResourceNotFoundError;
-import per.shantanu.poc.sailpoint.repositories.AccountRepository;
-import per.shantanu.poc.sailpoint.repositories.CredentialsRepository;
+import per.shantanu.poc.atm.entities.Account;
+import per.shantanu.poc.atm.entities.Credentials;
+import per.shantanu.poc.atm.errors.ResourceNotFoundError;
+import per.shantanu.poc.atm.repositories.AccountRepository;
+import per.shantanu.poc.atm.repositories.CredentialsRepository;
 import reactor.core.publisher.Mono;
 
 @RestController

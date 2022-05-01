@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint;
+package per.shantanu.poc.atm;
 
 import java.time.ZoneId;
 import lombok.NonNull;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import per.shantanu.poc.sailpoint.config.ApplicationProperties;
+import per.shantanu.poc.atm.config.ApplicationProperties;
 
 @SpringBootApplication(scanBasePackages = "per.shantanu")
 @RequiredArgsConstructor

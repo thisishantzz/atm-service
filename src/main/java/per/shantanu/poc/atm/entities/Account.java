@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.entities;
+package per.shantanu.poc.atm.entities;
 
 import java.util.function.Consumer;
 import lombok.AccessLevel;

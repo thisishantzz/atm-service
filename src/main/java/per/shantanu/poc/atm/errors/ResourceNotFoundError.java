@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.errors;
+package per.shantanu.poc.atm.errors;
 
 public class ResourceNotFoundError extends Exception {
 

@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.config;
+package per.shantanu.poc.atm.config;
 
 import lombok.NonNull;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import per.shantanu.poc.sailpoint.repositories.AccountRepository;
-import per.shantanu.poc.sailpoint.repositories.CredentialsRepository;
-import per.shantanu.poc.sailpoint.repositories.dynamodb.DynamoDBAccountRepository;
-import per.shantanu.poc.sailpoint.repositories.dynamodb.DynamoDBCredentialsRepository;
+import per.shantanu.poc.atm.repositories.AccountRepository;
+import per.shantanu.poc.atm.repositories.CredentialsRepository;
+import per.shantanu.poc.atm.repositories.dynamodb.DynamoDBAccountRepository;
+import per.shantanu.poc.atm.repositories.dynamodb.DynamoDBCredentialsRepository;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;

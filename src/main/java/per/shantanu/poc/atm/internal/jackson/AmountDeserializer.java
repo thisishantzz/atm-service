@@ -1,4 +1,4 @@
-package per.shantanu.poc.sailpoint.internal.jackson;
+package per.shantanu.poc.atm.internal.jackson;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
 import lombok.NonNull;
-import per.shantanu.poc.sailpoint.handlers.ATMServiceController;
+import per.shantanu.poc.atm.handlers.ATMServiceController;
 
 public class AmountDeserializer extends JsonDeserializer<ATMServiceController.Amount> {
 

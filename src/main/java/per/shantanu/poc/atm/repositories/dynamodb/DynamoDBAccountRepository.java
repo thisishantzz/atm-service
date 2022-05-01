@@ -1,10 +1,10 @@
-package per.shantanu.poc.sailpoint.repositories.dynamodb;
+package per.shantanu.poc.atm.repositories.dynamodb;
 
 import java.util.Map;
 import java.util.UUID;
 import lombok.Builder;
-import per.shantanu.poc.sailpoint.entities.Account;
-import per.shantanu.poc.sailpoint.repositories.AccountRepository;
+import per.shantanu.poc.atm.entities.Account;
+import per.shantanu.poc.atm.repositories.AccountRepository;
 import reactor.core.publisher.Mono;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
