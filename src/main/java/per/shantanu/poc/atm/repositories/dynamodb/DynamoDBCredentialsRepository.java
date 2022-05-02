@@ -7,6 +7,7 @@ import per.shantanu.poc.atm.repositories.CredentialsRepository;
 import reactor.core.publisher.Mono;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 
 @Builder(builderMethodName = "create")
 public class DynamoDBCredentialsRepository extends CredentialsRepository {
@@ -23,10 +24,10 @@ public class DynamoDBCredentialsRepository extends CredentialsRepository {
 
     return Mono.fromFuture(
             dynamodb.getItem(
-                b -> {
-                  b.tableName(TABLE_NAME);
-                  b.key(Map.of(TABLE_KEY, AttributeValue.builder().s(customerID).build()));
-                }))
+                GetItemRequest.builder()
+                    .tableName(TABLE_NAME)
+                    .key(Map.of(TABLE_KEY, AttributeValue.builder().s(customerID).build()))
+                    .build()))
         .flatMap(
             t -> {
               if (t.item().size() <= 0) {

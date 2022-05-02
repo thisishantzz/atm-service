@@ -8,6 +8,8 @@ import per.shantanu.poc.atm.repositories.AccountRepository;
 import reactor.core.publisher.Mono;
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 
 @Builder(builderMethodName = "create")
 public class DynamoDBAccountRepository extends AccountRepository {
@@ -25,10 +27,10 @@ public class DynamoDBAccountRepository extends AccountRepository {
 
     return Mono.fromFuture(
             dynamodb.getItem(
-                b -> {
-                  b.tableName(TABLE_NAME);
-                  b.key(Map.of(TABLE_KEY, AttributeValue.builder().s(accountNumber).build()));
-                }))
+                GetItemRequest.builder()
+                    .tableName(TABLE_NAME)
+                    .key(Map.of(TABLE_KEY, AttributeValue.builder().s(accountNumber).build()))
+                    .build()))
         .flatMap(
             t -> {
               if (t.item().size() <= 0) {
@@ -82,17 +84,17 @@ public class DynamoDBAccountRepository extends AccountRepository {
 
     return Mono.fromFuture(
             dynamodb.putItem(
-                b -> {
-                  b.tableName(TABLE_NAME);
-                  b.item(
-                      Map.of(
-                          TABLE_KEY,
-                          AttributeValue.builder().s(account.accountNumber()).build(),
-                          FIELD_CUSTOMER_ID,
-                          AttributeValue.builder().s(account.customerID()).build(),
-                          FIELD_BALANCE,
-                          AttributeValue.builder().n(Double.toString(account.balance())).build()));
-                }))
+                PutItemRequest.builder()
+                    .tableName(TABLE_NAME)
+                    .item(
+                        Map.of(
+                            TABLE_KEY,
+                            AttributeValue.builder().s(account.accountNumber()).build(),
+                            FIELD_CUSTOMER_ID,
+                            AttributeValue.builder().s(account.customerID()).build(),
+                            FIELD_BALANCE,
+                            AttributeValue.builder().n(Double.toString(account.balance())).build()))
+                    .build()))
         .then();
   }
 }
