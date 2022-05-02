@@ -137,7 +137,7 @@ This is by no means a complete solution and many more improvements can be done t
 * Use the cloud version of DynamoDB instead of the local setup
 * Do not store credentials as plaintext in the database. Right now, the `pin`, that is a part of the customer's credentials are stored in plaintext. 
 * Do not pass aws `access_key` and `secret` in plaintext through configurations. If we use AWS EKS to deploy, we should use the k8s service accounts and IRSA (IAM Roles for Service Accounts) roles to get access to AWS resources. 
-* Use a `write-through` cache instead of hitting the database all the time. I feel that this service would get far more read requests than write requests. In such a case, having this cache can speed up requests. 
+* Use a `write-through` cache instead of hitting the database all the time. I feel that this service would get far more read requests than write requests. In such a case, having this cache can speed up requests. If we use the AWS managed version of DynamoDB, we can also use DynamoDB DAX as our cache.
 * Create an open api spec for the APIs before implementing the apis. Jumping into the implementation before having the design ready is usually not a good idea. 
 * Make a record of transactions, especially the deposit and withdraw transactions. This can be done in another table in the database and can be done asynchronously. This can be used by customers to see the transactions they made and also as an audit trail. 
 * Return more meaningful error messages. Right now, if there is an error, only a `Http 4xx` or `Http 5xx` status code is returned. As an improvement, implementing `RFC 7807` would make the APIs more user-friendly. 
