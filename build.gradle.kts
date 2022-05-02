@@ -61,6 +61,10 @@ tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
     builder = "paketobuildpacks/builder:tiny"
 }
 
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
+
 tasks.withType<Jar> {
     manifest {
         attributes["Implementation-Version"] = project.version
