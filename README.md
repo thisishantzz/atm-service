@@ -2,6 +2,12 @@
 
 This work is in response to an assignment given to me by SailPoint. 
 
+This `README` assumes the working directory to be the `PROJECT_ROOT`. If you are not already in the project root, please `cd` into it.
+
+```shell
+cd ${PROJECT_ROOT}
+```
+
 ## Requirements
 
 To run the application, the machine you are using needs to have the following
@@ -12,13 +18,15 @@ To run the application, the machine you are using needs to have the following
 
 Please ensure that the docker engine is running and the machine can be connected to the Internet. 
 
-## Setup the application
+## Unit Tests
 
-This `README` assumes the working directory to be the `PROJECT_ROOT`. If you are not already in the project root, please `cd` into it. 
+I have written a few unit tests to ensure that the application functions as expected. These tests are available in the `src/test` folder. Invoke the following command to run these tests
 
 ```shell
-cd ${PROJECT_ROOT}
+./gradlew clean test
 ```
+
+## Setup the application
 
 ### Prepare initialization data
 
