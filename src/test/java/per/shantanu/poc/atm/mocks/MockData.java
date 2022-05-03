@@ -81,10 +81,10 @@ public class MockData {
                             .build()))
             .when(client)
             .getItem(
-                GetItemRequest.builder()
-                    .tableName("Account")
-                    .key(Map.of("accountNumber", AttributeValue.builder().s("111").build()))
-                    .build());
+                ArgumentMatchers.<GetItemRequest>argThat(
+                    arg ->
+                        Objects.equals("Account", arg.tableName())
+                            && Objects.equals("111", arg.key().get("accountNumber").s())));
 
         doReturn(CompletableFuture.supplyAsync(() -> PutItemResponse.builder().build()))
             .when(client)
